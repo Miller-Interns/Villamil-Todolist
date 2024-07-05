@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import TodoList from '@/components/todolist-Table.vue'
+import todoList from '@/components/todolist-Table.vue'
 </script>
 
 <template>
   <main>
-    <TodoList hTitle="To Do List" />
+    <todoList introductionTitle="To Do List" />
   </main>
 </template>
 

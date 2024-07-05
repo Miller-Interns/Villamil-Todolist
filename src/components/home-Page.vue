@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 
-defineProps<{
-  fullName: string
-  projectDate: string
-  buttonTitle: string
-}>()
+const props = defineProps({
+  fullName: String,
+  projectDate: String,
+  buttonTitle: String
+})
 </script>
 
 <template>
   <div class="container">
-    <p class="fName">{{ fullName }}</p>
-    <p class="pDate">Date created {{ projectDate }}</p>
+    <p class="fName">{{ props.fullName }}</p>
+    <p class="pDate">Date created {{ props.projectDate }}</p>
     <nav>
-      <RouterLink class="bTitle" to="/todolist">{{ buttonTitle }}</RouterLink>
+      <RouterLink class="bTitle" to="/todolist">{{ props.buttonTitle }}</RouterLink>
     </nav>
   </div>
 

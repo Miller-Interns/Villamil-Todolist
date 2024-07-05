@@ -1,57 +1,59 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
+import { useStorage } from '@/stores/local-Storage'
+
 import {
-  categoriesList,
   deleteCategory,
   isEditingCategory,
   editableCategoryName,
   startEditingCategory,
   saveCategory,
-  cancelEditing,
+  canceleditingCategory,
+  categoryList
+} from '@/composables/category-Creation'
+
+import {
   newTaskTitle,
   addNewTask,
   editingTaskId,
   startEditingTask,
   saveTask,
   cancelEditingTask,
-  deleteTask,
-  onDrop,
-  onDragOver,
-  onDragStart
-} from '@/stores/counter'
+  deleteTask
+} from '../composables/counter'
+
+import { onDrop, onDragOver, onDragStart } from '../composables/draggable-Task'
+
+onMounted(() => {
+  useStorage()
+})
 </script>
 
 <template>
   <div class="conCategoryList">
     <div
-      v-for="category in categoriesList"
+      v-for="category in categoryList"
       :key="category.id"
       class="categoryList"
       :data-category-id="category.id"
       @dragover="onDragOver"
       @drop="(event) => onDrop(event, category.id)"
     >
-      <button class="catDelete" @click="deleteCategory(category.id)">X</button>
-      <span class="categoryTitle" v-if="!isEditingCategory(category.id)"> {{ category.name }}</span>
-      <input v-else v-model="editableCategoryName" class="editInput" />
-
-      <button
+      <span
+        class="categoryTitle"
         v-if="!isEditingCategory(category.id)"
-        @click="startEditingCategory(category.id, category.name)"
-        class="editButton"
+        @dblclick="startEditingCategory(category.id, category.name)"
       >
-        Edit
-      </button>
-
-      <button
-        v-if="isEditingCategory(category.id)"
-        class="saveButton"
-        @click="saveCategory(category.id)"
+        {{ category.name }}</span
       >
-        Save
-      </button>
-      <button v-if="isEditingCategory(category.id)" class="cancelButton" @click="cancelEditing">
-        Cancel
-      </button>
+      <input
+        v-else
+        v-model="editableCategoryName"
+        @keydown.enter="saveCategory(category.id)"
+        @keydown.esc="canceleditingCategory()"
+        class="editInput"
+      />
+      <button class="catDelete" @click="deleteCategory(category.id)">X</button>
 
       <div class="taskCreate">
         <input v-model="newTaskTitle" placeholder="Task Title" />
@@ -88,14 +90,17 @@ import {
 
 <style scoped>
 .conCategoryList {
-  position: absolute;
+  position: relative;
   align-content: left;
-  left: 38px;
+  left: -130px;
+  width: 1475px;
   top: 80px;
+  border: 2px solid white;
 }
 
 .categoryList {
-  width: 450px;
+  position: relative;
+  width: 347px;
   height: 180px;
   background-color: #eadbc8;
   border: 1px solid black;
@@ -109,8 +114,8 @@ import {
 
 .catDelete {
   position: absolute;
-  display: inline-flex;
-  margin-left: 420px;
+  height: 22px;
+  margin-left: 318px;
   padding-bottom: 1px;
   margin-top: 5px;
   border-radius: 5px;
@@ -138,50 +143,6 @@ import {
   height: 20px;
   margin-top: 5px;
   margin-left: 5px;
-}
-
-.editButton {
-  position: absolute;
-  display: inline-flex;
-  margin-left: 380px;
-  padding-bottom: 1px;
-  margin-top: 5px;
-  color: #293241;
-  background-color: #ffc94a;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.editButton:hover {
-  background-color: #ff8a08;
-}
-
-.saveButton {
-  position: absolute;
-  display: inline-flex;
-  margin-left: 310px;
-  padding-bottom: 1px;
-  margin-top: 5px;
-  color: #293241;
-  background-color: #ffc94a;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.saveButton:hover {
-  background-color: #ff8a08;
-}
-
-.cancelButton {
-  position: absolute;
-  display: inline-flex;
-  margin-left: 360px;
-  padding-bottom: 1px;
-  margin-top: 5px;
-  color: #293241;
-  background-color: #ffc94a;
-  cursor: pointer;
-  border-radius: 5px;
 }
 
 .taskCreate {
@@ -212,13 +173,6 @@ import {
   overflow-y: auto;
   scrollbar-width: none;
   margin-top: 2px;
-}
-
-.taskDetailVal {
-  margin-left: 5px;
-  margin-top: 1px;
-  font-size: small;
-  position: absolute;
 }
 
 .taskList .completed {

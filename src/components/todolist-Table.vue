@@ -2,26 +2,34 @@
 import { RouterLink } from 'vue-router'
 import noteIcon from '@/components/icons/title-Icon.vue'
 
-import { statusShowCat, newCategoryName, addNewCategory } from '@/stores/counter'
+import {
+  statusShowCategory,
+  newCategoryName,
+  addNewCategory
+} from '@/composables/category-Creation'
 import categoryPage from './category-Page.vue'
 
-defineProps<{
-  hTitle: string
-}>()
+const props = defineProps({
+  introductionTitle: String
+})
 </script>
 
 <template>
   <div class="conCategory">
-    <h1 class="conCategoryTitle"><noteIcon />{{ hTitle }}</h1>
+    <h1 class="conCategoryTitle"><noteIcon />{{ props.introductionTitle }}</h1>
     <RouterLink class="backhome" to="/">Back</RouterLink>
-    <button class="createCatButton" @click="statusShowCat = !statusShowCat">New Category</button>
+    <button class="createCatButton" @click="statusShowCategory = !statusShowCategory">
+      New Category
+    </button>
     <input
       class="catInputBox"
       v-model="newCategoryName"
-      v-show="statusShowCat"
+      v-show="statusShowCategory"
       placeholder="Enter Category Name"
     />
-    <button class="continueCatButton" v-show="statusShowCat" @click="addNewCategory">Create</button>
+    <button class="continueCatButton" v-show="statusShowCategory" @click="addNewCategory">
+      Create
+    </button>
   </div>
   <categoryPage />
 </template>
