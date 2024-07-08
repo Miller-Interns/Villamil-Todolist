@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import type { categoriesList } from '@/types/types'
+import type { categoriesList } from '@/types/type-variables'
 
 const charLength = 30
 function idGeneration() {

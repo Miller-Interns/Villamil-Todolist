@@ -6,8 +6,10 @@ import {
   statusShowCategory,
   newCategoryName,
   addNewCategory
-} from '@/composables/category-Creation'
-import categoryPage from './category-Page.vue'
+} from '@/composables/category-creation'
+import categoryPage from './category-page.vue'
+
+import { routerName } from '@/types/enum-variables'
 
 const props = defineProps({
   introductionTitle: String
@@ -17,7 +19,7 @@ const props = defineProps({
 <template>
   <div class="conCategory">
     <h1 class="conCategoryTitle"><noteIcon />{{ props.introductionTitle }}</h1>
-    <RouterLink class="backhome" to="/">Back</RouterLink>
+    <RouterLink class="backhome" :to="routerName.firstPage">Back</RouterLink>
     <button class="createCatButton" @click="statusShowCategory = !statusShowCategory">
       New Category
     </button>

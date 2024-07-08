@@ -1,4 +1,5 @@
 export enum routerName {
   firstPage = 'home',
-  secondPage = 'todolist'
+  secondPage = 'todolist',
+  rootPage = 'root'
 }

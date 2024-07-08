@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { categoryList } from './category-Creation'
+import { categoryList } from './category-creation'
 
 const charLength = 30
 export const newTaskTitle = ref('')

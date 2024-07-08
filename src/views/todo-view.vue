@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import todoList from '@/components/todolist-Table.vue'
+import todoList from '@/components/todolist-page.vue'
 </script>
 
 <template>
@@ -9,5 +9,3 @@ import todoList from '@/components/todolist-Table.vue'
 </template>
 
 <style></style>
-
-<!-- f2 to edit tags -->

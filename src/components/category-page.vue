@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { useStorage } from '@/stores/local-Storage'
+import { useStorage } from '@/stores/local-storage'
 
 import {
   deleteCategory,
@@ -10,7 +10,7 @@ import {
   saveCategory,
   canceleditingCategory,
   categoryList
-} from '@/composables/category-Creation'
+} from '@/composables/category-creation'
 
 import {
   newTaskTitle,
@@ -20,9 +20,9 @@ import {
   saveTask,
   cancelEditingTask,
   deleteTask
-} from '../composables/counter'
+} from '../composables/task-creation'
 
-import { onDrop, onDragOver, onDragStart } from '../composables/draggable-Task'
+import { onDrop, onDragOver, onDragStart } from '../composables/draggable-task'
 
 onMounted(() => {
   useStorage()

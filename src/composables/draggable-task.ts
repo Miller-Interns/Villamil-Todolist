@@ -1,6 +1,6 @@
 import { ref } from 'vue'
-import { categoryList } from './category-Creation'
-import type { draggedTask } from '@/types/drag-Type'
+import { categoryList } from './category-creation'
+import type { draggedTask } from '@/types/drag-variables'
 
 export const taskDragging = ref<draggedTask | null>(null)
 

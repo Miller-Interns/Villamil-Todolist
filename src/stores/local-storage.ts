@@ -1,5 +1,5 @@
 import { watch } from 'vue'
-import { categoryList } from '../composables/category-Creation'
+import { categoryList } from '../composables/category-creation'
 
 export const useStorage = () => {
   const storedList = window.localStorage.getItem('categoryList')
