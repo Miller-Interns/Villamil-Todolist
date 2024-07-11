@@ -2,26 +2,36 @@
 import { RouterLink } from 'vue-router'
 import noteIcon from '@/components/icons/title-Icon.vue'
 
-import { statusShowCat, newCategoryName, addNewCategory } from '@/stores/counter'
-import categoryPage from './category-Page.vue'
+import {
+  statusShowCategory,
+  newCategoryName,
+  addNewCategory
+} from '@/composables/category-creation'
+import categoryPage from './category-page.vue'
 
-defineProps<{
-  hTitle: string
-}>()
+import { RouterName } from '@/types/enum-variables'
+
+const props = defineProps({
+  introductionTitle: String
+})
 </script>
 
 <template>
   <div class="conCategory">
-    <h1 class="conCategoryTitle"><noteIcon />{{ hTitle }}</h1>
-    <RouterLink class="backhome" to="/">Back</RouterLink>
-    <button class="createCatButton" @click="statusShowCat = !statusShowCat">New Category</button>
+    <h1 class="conCategoryTitle"><noteIcon />{{ props.introductionTitle }}</h1>
+    <RouterLink class="backhome" :to="RouterName.firstPage">Back</RouterLink>
+    <button class="createCatButton" @click="statusShowCategory = !statusShowCategory">
+      New Category
+    </button>
     <input
       class="catInputBox"
       v-model="newCategoryName"
-      v-show="statusShowCat"
+      v-show="statusShowCategory"
       placeholder="Enter Category Name"
     />
-    <button class="continueCatButton" v-show="statusShowCat" @click="addNewCategory">Create</button>
+    <button class="continueCatButton" v-show="statusShowCategory" @click="addNewCategory">
+      Create
+    </button>
   </div>
   <categoryPage />
 </template>
