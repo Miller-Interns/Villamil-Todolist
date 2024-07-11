@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import { routerName } from '@/types/enum-variables'
+import { RouterName } from '@/types/enum-variables'
 
 const props = defineProps({
   fullName: String,
@@ -14,7 +14,7 @@ const props = defineProps({
     <p class="fName">{{ props.fullName }}</p>
     <p class="pDate">Date created {{ props.projectDate }}</p>
     <nav>
-      <RouterLink class="bTitle" :to="routerName.secondPage">{{ props.buttonTitle }}</RouterLink>
+      <RouterLink class="bTitle" :to="RouterName.secondPage">{{ props.buttonTitle }}</RouterLink>
     </nav>
   </div>
 

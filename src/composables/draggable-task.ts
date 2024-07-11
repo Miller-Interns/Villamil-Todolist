@@ -1,8 +1,8 @@
 import { ref } from 'vue'
 import { categoryList } from './category-creation'
-import type { draggedTask } from '@/types/drag-variables'
+import type { DraggedTask } from '@/types/drag-variables'
 
-export const taskDragging = ref<draggedTask | null>(null)
+export const taskDragging = ref<DraggedTask | null>(null)
 
 function moveTaskToCategory(taskId: number, fromCategoryId: number, toCategoryId: number) {
   const fromCategory = categoryList.value.find((category) => category.id === fromCategoryId)

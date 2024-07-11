@@ -1,4 +1,4 @@
-export type draggedTask = {
+export type DraggedTask = {
   task: any
   fromcategoryId: number
 }
